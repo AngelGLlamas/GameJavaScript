@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" contect="Un juego en javascript">
+    <!--metas para PWA-->
+    <meta name="theme-color" content="#6200ee" />
+    <meta name="apple-mobile-web-app-title" content="Juego Javascript">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="app/icons/icon_192.png">
+
+    <title>Shooter Game</title>
+    <link rel="shortcut icon" href="assets/img/characters/char_01.png" type="image/x-icon">
+
+    <!--Manifest para PWA-->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- sass compiled -->
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css" />
+    <link href="assets/css/main.css.map" />
+
+    <!-- material icons -->
+    <link type="text/css" rel="stylesheet" href="assets/css/materialdesignicons.css" />
+    <link href="assets/css/materialdesignicons.css.map" />
+
+    <link rel="apple-touch-icon" href="./assets/img/icon.png" />
+    <link rel="icon" href="./assets/img/favicon.png" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link href="./assets/css/main.css.map" />
+
+    <!-- swiperjs -->
+    <link rel="stylesheet" href="app/libs/swiper.css" />
+</head>
+
+<body>
+    <div id="app" class="app">
+
+        <!-- 
+            SPLASH PAGE
+            
+            Información sobre splash page.
+
+            -->
+        <section id="splash_page" class="full_window">
+            <!-- Splash template -->
+            <h1>Cargando Juego</h1>         
+        </section>
+
+
+        <!-- 
+            MAIN PAGE
+            
+            Página donde está alojado el juego
+            
+            -->
+        <section id="main_page" class="full_window">
+            <!-- Main page UI -->
+            <div class="ui">
+                <div class="lifes">
+                    <span class="amount">3</span>
+                    <span class="icon">
+                        <span class="mdi mdi-cards-heart"></span>
+                    </span>
+                </div>
+                <div class="score">
+                    <span class="amount">3</span>
+                    <span class="icon">
+                        <span class="mdi mdi-star"></span>
+                    </span>
+                </div>
+                <div class="pause">
+                    <a href="#modal_pause_window" class="pause_btn" id="pause" navigation-type="modal" animation-type="pause_modal">
+                        <span class="mdi mdi-pause-circle-outline"></span>
+                    </a>
+                </div>
+            </div>
+            <!-- Main page Juego!! -->
+            <div class="game">
+                
+            </div>
+        </section>
+
+        <!-- 
+            VENTANA MODAL PAUSA
+            
+            Ventana modal de pausa
+            
+            -->
+        <section id="modal_pause_window" class="modal_window modal_light">
+            <!-- modal overlay -->
+            <div class="overlay"></div>
+            <!-- modal holder -->
+            <div class="holder">
+                <!-- modal settings -->
+                <div class="settings">
+                    <div class="setting">
+                        <div class="setting_icon">
+                            <span class="mdi mdi-volume-high"></span>
+                        </div>
+                        <div class="setting_label">
+                            <spam>Música de fondo</spam>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 36 36">
+                                <g class="mdi:toggle-switch-off-outline">
+                                <path fill="#000" d="M10.5 15a3 3 0 110 6 3 3 0 010-6zm15-4.5a7.5 7.5 0 010 15h-15a7.5 7.5 0 010-15h15zm-15 3a4.5 4.5 0 100 9h15a4.5 4.5 0 100-9h-15z" class="Vector"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="setting">
+                        <div class="setting_icon">
+                            <span class="mdi mdi-music-note-eighth"></span>
+                        </div>
+                        <div class="setting_label">
+                            <spam>Sonido de efectos</spam>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 36 36">
+                                <g class="mdi:toggle-switch-off-outline">
+                                <path fill="#000" d="M10.5 15a3 3 0 110 6 3 3 0 010-6zm15-4.5a7.5 7.5 0 010 15h-15a7.5 7.5 0 010-15h15zm-15 3a4.5 4.5 0 100 9h15a4.5 4.5 0 100-9h-15z" class="Vector"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal ctas -->
+                <a class="btn btn_primary" href="#main_page" navigation-type="modal" animation-type="resume_modal">Volver al juego</a>
+                <a class="btn btn_secondary" href="#modal_confirm" navigation-type="modal" animation-type="confirm_modal_in">Salir</a>
+            </div>
+        </section>
+
+        <!-- 
+            VENTANA MODAL CONFIRMACIÓN
+            
+            Ventana modal de confirmación
+            
+            -->
+        <section id="modal_confirm" class="modal_window">
+            <!-- modal overlay -->
+            <div class="overlay"></div>
+            <!-- modal holder -->
+            <div class="holder">
+                <!-- modal message -->
+                <div class="message">
+                    Si sales del juego, perderás todos los puntos.<br />
+                    Estás seguro?
+                </div>
+
+                <!-- modal cta -->
+                <div class="cta">
+                    <a class="btn btn_primary" href="#menu_page" navigation-type="animation" animation-type="game_out">Quit</a>
+                    <a class="btn btn_secondary" href="#main_page" navigation-type="modal" animation-type="confirm_modal_out">Cancelar</a>
+                </div>
+            </div>
+        </section>
+
+        <div id="swiper_page" class="swiper_section full_window">
+
+            <div class="swiper-wrapper">
+
+            <!-- 
+                PÁGINA DE SETTINGS
+                
+                Página para modificar settings
+                
+                -->
+            <section id="settings_page" class="swiper_item swiper-slide">
+                <header class="header">
+                    <h2>Ajustes</h2>
+                    Aquí puedes cambiar algunos ajustes del juego <br>
+                    Puedes volver pulsando el botón o deslizando el dedo <br>
+                </header>
+
+                <div class="tema">
+                    <spam>Música de fondo</spam>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 36 36">
+                        <g class="mdi:toggle-switch-off-outline">
+                          <path fill="#000" d="M10.5 15a3 3 0 110 6 3 3 0 010-6zm15-4.5a7.5 7.5 0 010 15h-15a7.5 7.5 0 010-15h15zm-15 3a4.5 4.5 0 100 9h15a4.5 4.5 0 100-9h-15z" class="Vector"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="tema">
+                    <spam>Sonido de efectos</spam>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" viewBox="0 0 36 36">
+                        <g class="mdi:toggle-switch-off-outline">
+                          <path fill="#000" d="M10.5 15a3 3 0 110 6 3 3 0 010-6zm15-4.5a7.5 7.5 0 010 15h-15a7.5 7.5 0 010-15h15zm-15 3a4.5 4.5 0 100 9h15a4.5 4.5 0 100-9h-15z" class="Vector"/>
+                        </g>
+                    </svg>
+                </div>
+
+                
+
+                <footer class="footer">
+                    <a href="#menu_page" navigation-type="swipe">Volver al menú</a>
+                </footer>
+            </section>
+
+            <!-- 
+                MENU PAGE
+                
+                Página de menu
+                
+                -->
+            <section id="menu_page" class="swiper_item swiper-slide">
+                <header class="header">
+                    <button id="binstall" aria-label="Install" hidden>Instalar APP</button>
+                    <h1>Shooter Space</h1>
+                </header>
+                <div class="slider">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 135 141">
+                        <g class="char_01">
+                          <path d="M57.974 15.5c4.234-7.333 14.818-7.333 19.052 0l35.94 62.25c4.234 7.333-1.058 16.5-9.526 16.5H31.56c-8.468 0-13.76-9.167-9.526-16.5l35.94-62.25z" class="body"/>
+                          <g class="legs">
+                            <path d="M52 95v26.675L37 136" class="leg_02"/>
+                            <path d="M83 95v26.675L96 136" class="leg_01"/>
+                          </g>
+                          <g class="face">
+                            <g class="eye_l">
+                              <path d="M60.5 54.5L49 47" class="eye_brow"/>
+                              <circle cx="52" cy="60" r="4" fill="#586465" class="eye"/>
+                            </g>
+                            <g class="eye_r">
+                              <path d="M70.5 55.5l11-11" class="eye_brow_2"/>
+                              <circle cx="79" cy="59" r="4" fill="#586465" class="eye_2"/>
+                            </g>
+                            <path d="M59 80l7.5-8.5 7.5 8" class="mouth"/>
+                          </g>
+                        </g>
+                      </svg>
+                      
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 108 128">
+                        <g class="char_02">
+                          <g class="legs">
+                            <path d="M29 85v26.675L14 126" class="leg_02"/>
+                            <path d="M81 85v26.675L94 126" class="leg_01"/>
+                          </g>
+                          <rect width="104" height="81" x="2" y="2" class="body" rx="14"/>
+                          <g class="face">
+                            <path d="M21 42c0-4.97 5.373-9 12-9s12 4.03 12 9" class="eye_l"/>
+                            <path d="M62 42c0-4.97 5.373-9 12-9s12 4.03 12 9" class="eye_r"/>
+                            <path d="M62.696 55.626c0 3-3.965 5.432-8.855 5.432-4.89 0-8.855-2.432-8.855-5.432" class="mouth"/>
+                          </g>
+                        </g>
+                      </svg>
+                      
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 106 134">
+                        <g class="char_03">
+                          <g class="legs">
+                            <path d="M38 91v26.675L23 132" class="leg_02"/>
+                            <path d="M69 91v26.675L82 132" class="leg_01"/>
+                          </g>
+                          <circle cx="53" cy="53" r="51" class="body"/>
+                          <g class="face">
+                            <circle cx="39" cy="56" r="4" class="eye"/>
+                            <circle cx="66" cy="56" r="4"  class="eye_2"/>
+                            <path stroke="#586465" stroke-linecap="round" stroke-width="4" d="M30 53h47" class="Line 1"/>
+                            <circle cx="68" cy="82" r="4" class="mouth"/>
+                          </g>
+                        </g>
+                      </svg>                   
+                </div>
+
+                <footer class="footer">
+                    <a class="startgame" href="#main_page" navigation-type="animation" animation-type="menu_to_game">Start Game</a>
+                    
+                    <div class="foot_navigation">
+                        <div class="inline_menu centered">
+                            <div class="vector_01">
+                                <a href="#settings_page" navigation-type="swipe">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                        <g class="v_02">
+                                            <path fill="#000"
+                                                d="M.123 11.944l1.839 3.114a.917.917 0 00.558.419c.235.061.486.029.697-.09l1.284-.726a7.46 7.46 0 001.742 1V17.1a.89.89 0 00.269.636.93.93 0 00.65.264h3.677a.93.93 0 00.65-.264.89.89 0 00.27-.636v-1.438A7.477 7.477 0 0013.5 14.66l1.284.725a.933.933 0 001.255-.328l1.839-3.114a.887.887 0 00.09-.682.906.906 0 00-.426-.548l-1.26-.713a6.772 6.772 0 00-.003-2.002l1.262-.713a.892.892 0 00.335-1.23l-1.838-3.114a.917.917 0 00-.559-.419.937.937 0 00-.697.09l-1.284.726a7.422 7.422 0 00-1.74-1V.9a.89.89 0 00-.27-.636.93.93 0 00-.65-.264H7.161a.93.93 0 00-.65.264.89.89 0 00-.27.636v1.438A7.478 7.478 0 004.5 3.34l-1.283-.725a.932.932 0 00-1.255.328L.123 6.056a.887.887 0 00-.09.682c.062.23.215.427.426.547L1.719 8c-.098.664-.098 1.338 0 2.002l-1.26.713a.892.892 0 00-.336 1.23zM9 5.4c2.027 0 3.677 1.615 3.677 3.6S11.027 12.6 9 12.6c-2.028 0-3.678-1.615-3.678-3.6S6.972 5.4 9 5.4z"
+                                                class="Vector" />
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="vector_02">
+                                <a href="#leaderboard_page" navigation-type="swipe">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 18">
+                                        <g class="v_01">
+                                            <path fill="#000" d="M0 15.23h22V18H0v-2.77z" class="b_line" />
+                                            <path fill="#000" d="M17.875 0h-2.75v13.846h2.75V0z" class="line_04" />
+                                            <path fill="#000" d="M13.75 8.308H11v5.538h2.75V8.308z" class="line_03" />
+                                            <path fill="#000" d="M9.625 4.154h-2.75v9.692h2.75V4.154z" class="line_02" />
+                                            <path fill="#000" d="M5.5 9.692H2.75v4.154H5.5V9.692z" class="line_01" />
+                                        </g>
+                                    </svg>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </footer>
+            </section>
+
+            <!-- 
+                PÁGINA DE HIGH SCORES
+                
+                Página para meter high scores con PWA
+                
+                -->
+            <section id="leaderboard_page" class="swiper_item swiper-slide">
+                <!-- Leaderboard HighScore -->
+                <section class="hscore">
+                    <header class="header">
+                        <h2>Mejor puntuación</h2>
+                    </header>
+                    <div class="main">
+                        2014
+                    </div>
+                </section>
+
+                <!-- Leaderboard  -->
+                <section class="lboard">
+                    <header class="header">
+                        <h2>Tabla de puntuaciones</h2>
+                    </header>
+                    <div class="main">
+                        <div class="lboard_table">
+                            <div class="lboard_item">
+                                <div class="lboard_item_name">
+                                    LeaderBoard Item
+                                </div>
+                                <div class="lboard_item_p">123</div>
+                            </div>
+                            <div class="lboard_item">
+                                <div class="lboard_item_name">
+                                    LeaderBoard Item
+                                </div>
+                                <div class="lboard_item_p">123</div>
+                            </div>
+                            <div class="lboard_item">
+                                <div class="lboard_item_name">
+                                    LeaderBoard Item
+                                </div>
+                                <div class="lboard_item_p">123</div>
+                            </div>
+                            <div class="lboard_item you">
+                                <div class="lboard_item_name">
+                                    LeaderBoard Item
+                                </div>
+                                <div class="lboard_item_p">123</div>
+                            </div>
+                            <div class="lboard_item">
+                                <div class="lboard_item_name">
+                                    LeaderBoard Item
+                                </div>
+                                <div class="lboard_item_p">123</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Leaderboard back to menu -->
+                <footer class="footer">
+                    <a href="#menu_page" navigation-type="swipe">Volver al menú</a>
+                </footer>
+            </section>
+
+            </div> <!-- /swipe_wrapper-->
+        </div> <!-- /swipe_section-->
+
+
+
+
+
+
+
+        <!-- 
+            SPINNER
+            
+            Por si se necesita a la hora de hacer un spinner de carga
+            
+            -->
+        <section id="modal_loading_spinner" class="spinner_window">
+            <!-- Spinner -->
+            <span class="spinner">
+                <div class="mdi mdi-loading mdi-spin"></div>
+            </span>
+        </section>
+
+
+    </div>
+
+    <!-- libs -->
+    <script src="app/libs/swiper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="app/libs/anime.min.js" type="text/javascript"></script>
+
+    <!-- game -->
+    <script src="app/Game/Game.js" type="text/javascript"></script>
+    <script src="app/Game/Entity.js" type="text/javascript"></script>
+    <script src="app/Game/Character.js" type="text/javascript"></script>
+    <script src="app/Game/Player.js" type="text/javascript"></script>
+    <script src="app/Game/Opponent.js" type="text/javascript"></script>
+    <script src="app/Game/Shot.js" type="text/javascript"></script>
+    <script src="app/Game/utils.js" type="text/javascript"></script>
+
+    <!-- ui stuff -->
+    <script src="app/Animations.js" type="text/javascript"></script>
+    <script src="app/Navigation.js" type="text/javascript"></script>
+    <script src="app/UI.js" type="text/javascript"></script>
+
+    <!-- inits -->
+    <script src="app/main.js" type="text/javascript"></script>
+
+    <script>
+        if ('serviceWorker' in navigator){
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js').then((reg) => {
+                    console.log("Service worker registered", reg);
+                })
+            })
+        }
+    </script>
+    <script src="install.js"></script>
+    
+</body>
+
+</html>
