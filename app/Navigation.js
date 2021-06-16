@@ -17,8 +17,6 @@ let modals;
  * Variables globales de animación
  * Las animaciones las podemos guardar aquí: 
  * animaciones del layout, animaciones de componentes concretos, etc...
- * 
- * Si quieres crear una linea de animación nueva, puedes crear tus variables aquí
  */
 let animation_layout;
 
@@ -41,28 +39,6 @@ const navigationErrHandler = (err = "") => {
  * 
  * 
  * Inicializa la navegación SPA (Single Page Application)
- * Para ello: 
- * 
- * 1. Capturo el evento sobre los tags <a> y prevengo que naveguen
- * 2. Todas las <a> tienen un atributo en el HTML llamado navigation-type
- * 3. En función de este navigation-type navegamos de 3 maneras diferentes: 
- * 
- *    - a. swipe
- *         Navegamos con Swiper entre páginas y menú principal. 
- *         El controlador de esta navegación en swiperJS
- * 
- *    - b. animation
- *         Vamos al juego o volvemos del juego o entre splash page y 
- *         menu. Esta navegación la hacemos con animeJS. Haciendo que haya pantallas 
- *         que entren y salgan animando propiedades CSS.
- *         El tipo de animación lo metemos en otro atributo llamado "animation-type". 
- *         Mirar primer ejemplo
- * 
- *    - c. modal
- *         Abrimos popups y los cerramos. Con animeJS.
- *         El tipo de animación lo metemos en otro atributo llamado "animation-type". 
- *         Mirar primer ejemplo
- * 
  */
 const initNavigationEvents = () => {
     links.forEach(link => {
@@ -96,8 +72,6 @@ const initNavigationEvents = () => {
  * @param {String} getTo 
  * 
  * Función que controla la navegación con swiper.
- * Mirar documentación de swiper en eventos. 
- * Mirar documentación del bloque correspondiente para hacer una navegación con swiper
  */
 const swipeTo = (getTo = '#menu_page') => {
 
@@ -143,7 +117,6 @@ const swipeTo = (getTo = '#menu_page') => {
  * Función que controla la navegación general.
  * Esta función actualiza el state de la aplicación
  * Y lanza las animaciones que queramos en función del animationType.
- * 
  */
 const navigationTo = (getTo, animationType) => {
 
@@ -202,7 +175,6 @@ const navigationTo = (getTo, animationType) => {
  * Función que controla la apertura y cierre de ventanas popup (salir del juego y confirmar).
  * Esta función actualiza el state de la aplicación
  * Y lanza las animaciones que queramos en función del animationType
- * 
  */
 const popUpToggle = (getTo, animationType) => {
 
