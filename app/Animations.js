@@ -1,15 +1,6 @@
 /**
  * 
  * animation_FadeIn
- * 
- * Ejemplo de animación. Todas las animaciones tienen siempre 3 pasos: 
- *       a. Seleccionamos los elementos a animar
- *       b. Hemos visto que anime se comporta mejor con CSS declarado en el atributo style del HTML
- *          Por lo tanto, si queremos hacer alguna animación, podemos iniciar los valores con anime.set
- *       c. Animamos, con un timeline mejor, para poder concatenar animaciones...
- *       d. Si queremos meter alguna función después de animar podemos meter el callback complete o usar promesas...
- * 
- * 
  */
 const animation_FadeIn = () => {
     // Selecciona elementos a animar
@@ -54,7 +45,6 @@ const animation_SplashToMenu = () => {
     const from = GAME_UI.pages.splash;
     const to = GAME_UI.pages.swiperContainer;
     
-    // Necesitas meter algo de CSS antes de la animación??
     anime.set(to, {
         visibility: 'visible', 
         translateY: '100%', 
