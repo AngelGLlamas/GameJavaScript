@@ -28,7 +28,6 @@ let initToggles = () => {
 /**
  * @function initSwiper
  * 
- * Inicializa SwiperJS con las configuraciones necesarias
  * La navegación entre las página settings, menu, leaderboard es con Swiper
  */
 let initSwiper = () => {
