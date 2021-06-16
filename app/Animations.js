@@ -46,8 +46,7 @@ const animation_FadeIn = () => {
 
 
 /**
- * El resto de animaciones las construyes tú. 
- * Recuerda que puedes guardar las animaciones del layout
+ * Podemos guardar las animaciones del layout
  * en la variable global animation
  */
 const animation_SplashToMenu = () => {
@@ -85,7 +84,6 @@ const animation_MenuToMain = (getTo) => {
     const from = document.querySelector('#swiper_page');
     const to = document.querySelector('#main_page');
 
-    //necesitamos meter algo de CSS antes de la animación??
     anime.set(to, {
         visibility: 'visible',
         translateY: '-100%',
@@ -121,7 +119,6 @@ const animation_MainToMenu = (getTo) => {
     const from = document.querySelector('#main_page');
     const to = document.querySelector('#swiper_page');
 
-    //necesitamos meter algo de CSS antes de la animación??
     anime.set(to, {
         visibility: 'visible',
         translateY: '100%',
@@ -158,7 +155,7 @@ const animation_MainToMenu = (getTo) => {
 
 /**
  * 
- * Ejemplo de un popup, como vemos, es lo mismo....
+ * Ejemplo de un popup
  */
 const animation_PopupPause = (getTo) => {
     const popup = document.querySelector('#modal_pause_window');
